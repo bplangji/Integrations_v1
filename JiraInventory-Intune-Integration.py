@@ -35,7 +35,7 @@ def refresh_access_token():
 api_token = 'ATATT3xFfGF0mNBtkBKqPBBxPUIGKy1fYVPdLXRcHdk-zgI130X5HSRzBH-vwsJe2Q0CwY13sAb4pgt3kyqXr9NteaqgVVH0sve1QFpSzhGcDiSXogIpuZXnTC1QwBYx0zGeNrlmuvDZpexCqax5PU5bfz030c7rkx3bFX63uzrr__XHsM9oUxM=04B0FD9F'
 email = 'bplangji@catalystone.com'
 
-# Encoding credentials
+# Encoding credentials for Base64 auth
 auth_string = f'{email}:{api_token}'
 base64_auth_info = base64.b64encode(auth_string.encode('ascii')).decode('ascii')
 
