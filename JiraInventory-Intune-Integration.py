@@ -1,5 +1,10 @@
-# Importing the modules I need for the script
+# The purpose of this script is to automate the retrieval of device information from our Intune enviroment and create or update corresponding issues in Jira for asset tracking
 
+
+# Install python packages 
+pip install requests
+
+# Importing the modules needed to run the script
 import requests
 import base64
 import json
