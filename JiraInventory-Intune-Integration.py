@@ -1,4 +1,8 @@
-# The purpose of this script is to automate the retrieval of device information from our Intune enviroment and create or update corresponding issues in Jira for asset tracking
+# The purpose of this script is to automate the retrieval of device information from our Intune MDM enviroment and create or update the data retrived in a kanban 
+# format in Jira for asset tracking. This helps me extract only the information I need about the devices we manage in the Nordics exclduing "India" and visualize it in Kanban tile 
+# that is easily managable and visualized
+
+# This script has been slightly modified for this case study and the original script is being run in Azure Runbook.
 
 
 # Install python packages 
@@ -9,11 +13,11 @@ import requests
 import base64
 import json
 
-# Refresh access token function
+# Refresh access Graph token function
 def refresh_access_token():
-    client_id = "c784a0ed-70dd-42e6-b315-427fe7fabab5"
-    client_secret = "LzO8Q~b7HUh6VNwpjwx6vjiAwcyOHGw3fyW4RcV0"
-    tenant_id = "cb6228a1-8648-4033-bced-c3b97aac6222"
+    client_id = "c784a0ed-70dd-42e6-b315-427fe7fabab6"
+    client_secret = "LzO8Q~b7HUh6VNwpjwx6vjiAwcyOHGw3fyW4RcV4"
+    tenant_id = "cb6228a1-8648-4033-bced-c3b97aac6223"
     token_endpoint = f"https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token"
     
     body = {
@@ -32,7 +36,7 @@ def refresh_access_token():
         raise Exception("Failed to refresh access token")
 
 # Jira API Token and email used for authentication
-api_token = 'ATATT3xFfGF0mNBtkBKqPBBxPUIGKy1fYVPdLXRcHdk-zgI130X5HSRzBH-vwsJe2Q0CwY13sAb4pgt3kyqXr9NteaqgVVH0sve1QFpSzhGcDiSXogIpuZXnTC1QwBYx0zGeNrlmuvDZpexCqax5PU5bfz030c7rkx3bFX63uzrr__XHsM9oUxM=04B0FD9F'
+api_token = 'ATBTT3xFfGF0mNBtkBKqPBBxPUIGKy1fYVPdLXRcHdk-zgI130X5HSRzBH-vwsJe2Q0CwY13sAb4pgt3kyqXr9NteaqgVVH0sve1QFpSzhGcDiSXogIpuZXnTC1QwBYx0zGeNrlmuvDZpexCqax5PU5bfz030c7rkx3bFX63uzrr__XHsM9oUxM=04B0FD9F'
 email = 'bplangji@catalystone.com'
 
 # Encoding credentials for Base64 auth
@@ -64,11 +68,11 @@ if 'value' in response_data:
     devices = response_data['value']
     
     for device in devices:
-        # Skip devices with names starting with "INDIA"
+        # Skip devices with names starting with "INDIA" 
         if device.get('deviceName', '').startswith("INDIA"):
             continue
         
-        # Build the Jira issue/ticket object with added fields
+        # Build the Jira issue object with the data points/fields needed
         issue_data = {
             "fields": {
                 "project": {"key": "NAI"},
