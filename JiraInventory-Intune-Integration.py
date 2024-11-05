@@ -5,9 +5,6 @@
 # This script has been modified and some info changed for security reasons and I purposed it solely for this case study. The original script is being run in Azure Runbook.
 
 
-# Install python packages 
-pip install requests
-
 # Importing the modules needed to run the script
 import requests
 import base64
