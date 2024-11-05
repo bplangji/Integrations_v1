@@ -2,7 +2,7 @@
 # format in Jira for asset tracking. This helps me extract only the information I need about the devices we manage in the Nordics exclduing "India" and visualize it in Kanban tile 
 # that is easily managable and visualized
 
-# This script has been slightly modified for this case study and the original script is being run in Azure Runbook.
+# This script has been modified and some info changed for security reasons and I purposed it solely for this case study. The original script is being run in Azure Runbook.
 
 
 # Install python packages 
@@ -36,7 +36,7 @@ def refresh_access_token():
         raise Exception("Failed to refresh access token")
 
 # Jira API Token and email used for authentication
-api_token = 'ATBTT3xFfGF0mNBtkBKqPBBxPUIGKy1fYVPdLXRcHdk-zgI130X5HSRzBH-vwsJe2Q0CwY13sAb4pgt3kyqXr9NteaqgVVH0sve1QFpSzhGcDiSXogIpuZXnTC1QwBYx0zGeNrlmuvDZpexCqax5PU5bfz030c7rkx3bFX63uzrr__XHsM9oUxM=04B0FD9F'
+api_token = 'ATBTT-vwsJe2Q0CwY13sAb4pgt3kyqXr9NteaqgVVH0sZXnTC1QwBYx0zGeNrlmuvDZpexCqax5PU5bfz030c7rkx3bFX63uzrr__XHsM9oUxM=04B0FD9F'
 email = 'bplangji@catalystone.com'
 
 # Encoding credentials for Base64 auth
